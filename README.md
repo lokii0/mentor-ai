@@ -25,21 +25,19 @@ Otwórz http://localhost:5180. Bez pliku `.env.local` apka działa w **trybie lo
    - Sign In / Providers → Email: włączony.
    - Settings → wyłącz **Allow new users to sign up** (apka ma jednego użytkownika).
    - Users → **Add user** → Twój e-mail + hasło, zaznacz *Auto Confirm*.
-4. **Klucze VAPID** (do powiadomień), raz:
-   ```bash
-   npx web-push generate-vapid-keys
-   ```
-5. **Edge Functions** (Supabase CLI przez npx):
+4. **Sekrety funkcji** — plik `.env.supabase.local` (ignorowany przez git) z kluczami VAPID (`npx web-push generate-vapid-keys`), `CRON_SECRET` (długi losowy ciąg), `VAPID_SUBJECT` i `ANTHROPIC_API_KEY`. Klucz Claude wpisujesz sam; żyje **tylko** w sekretach funkcji, nigdy w kodzie ani w repo.
+5. **Edge Functions** (Supabase CLI przez npx, bez Dockera dzięki `--use-api`):
    ```bash
    npx supabase login
-   npx supabase link --project-ref TWOJ_REF
-   npx supabase secrets set ANTHROPIC_API_KEY=sk-ant-... CRON_SECRET=dlugi-losowy-ciag VAPID_PUBLIC_KEY=... VAPID_PRIVATE_KEY=... VAPID_SUBJECT=mailto:twoj@email
-   npx supabase functions deploy mentor
-   npx supabase functions deploy push-tick
+   npx supabase secrets set --env-file .env.supabase.local --project-ref TWOJ_REF
+   npx supabase functions deploy mentor --project-ref TWOJ_REF --use-api
+   npx supabase functions deploy push-tick --project-ref TWOJ_REF --use-api --no-verify-jwt
    ```
-   Klucz Claude żyje **tylko** w sekretach funkcji — nigdy w kodzie ani w repo.
+   Funkcje czytają nowe klucze (`SUPABASE_PUBLISHABLE_KEYS`, `SUPABASE_SECRET_KEYS`), a stare `anon` / `service_role` są zapasem.
+
+   **Windows:** w PowerShellu pisz `npx.cmd` zamiast `npx` (blokada skryptów `.ps1`). `functions deploy` uruchamiaj w **Git Bash** — z PowerShella CLI 3.0 wysyła ścieżki z `\` i serwer odpowiada „Entrypoint path does not exist”.
 6. **Cron co godzinę** — w `supabase/migrations/0002_cron.sql` podmień `<PROJECT_REF>` i `<CRON_SECRET>`, potem uruchom w SQL Editor. Funkcja sama pilnuje ciszy 23:00–6:00, limitu 1 push / 2 h i wycisza się, gdy nie otwierasz apki (2 h → 4 h → 8 h).
-7. **Frontend** — skopiuj `.env.example` do `.env.local` i uzupełnij `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` (Project Settings → API) oraz `VITE_VAPID_PUBLIC_KEY`. Po restarcie `npm run dev` apka poprosi o logowanie.
+7. **Frontend** — skopiuj `.env.example` do `.env.local` i uzupełnij `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` (klucz publishable `sb_publishable_…` albo stary anon, Project Settings → API Keys) oraz `VITE_VAPID_PUBLIC_KEY`. Po restarcie `npm run dev` apka poprosi o logowanie.
 
 ### Model i koszt
 Domyślnie `claude-opus-5-5` (adaptive thinking, effort `medium`, structured outputs, serwerowy fallback przy odmowie). Szacunkowo przy ~15 wiadomościach dziennie to ok. 60–90 zł/mies., czyli więcej niż „kilkanaście zł” z PRD. Model zmienisz jednym sekretem, bez zmian w kodzie:

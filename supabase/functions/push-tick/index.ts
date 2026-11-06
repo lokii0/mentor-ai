@@ -5,8 +5,9 @@
 import webpush from 'npm:web-push@3.6.7'
 import { createClient } from 'npm:@supabase/supabase-js@2'
 import { addDays, warsawNow } from '../_shared/context.ts'
+import { secretKey } from '../_shared/keys.ts'
 
-const sb = createClient(Deno.env.get('SUPABASE_URL')!, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!)
+const sb = createClient(Deno.env.get('SUPABASE_URL')!, secretKey())
 
 webpush.setVapidDetails(
   Deno.env.get('VAPID_SUBJECT') ?? 'mailto:owner@example.com',

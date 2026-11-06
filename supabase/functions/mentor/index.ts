@@ -7,6 +7,7 @@ import { createClient } from 'npm:@supabase/supabase-js@2'
 import { cors, json } from '../_shared/cors.ts'
 import { CRISIS_NOTE, detectCrisis, REPLY_SCHEMA, SYSTEM_PROMPT } from '../_shared/prompt.ts'
 import { loadSnapshot, snapshotText } from '../_shared/context.ts'
+import { publishableKey } from '../_shared/keys.ts'
 
 // Default per current guidance; set MENTOR_MODEL (e.g. claude-sonnet-5-5) to trade quality for cost.
 const MODEL = Deno.env.get('MENTOR_MODEL') ?? 'claude-opus-5-5'
@@ -67,7 +68,7 @@ Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: cors })
   if (req.method !== 'POST') return json({ error: 'method' }, 405)
 
-  const sb = createClient(Deno.env.get('SUPABASE_URL')!, Deno.env.get('SUPABASE_ANON_KEY')!, {
+  const sb = createClient(Deno.env.get('SUPABASE_URL')!, publishableKey(), {
     global: { headers: { Authorization: req.headers.get('Authorization') ?? '' } },
   })
   const { data: auth } = await sb.auth.getUser()
