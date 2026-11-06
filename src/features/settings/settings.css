@@ -1,0 +1,13 @@
+.st-card { padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.st-card .list { margin: 0 -18px; }
+.st-card .list .lrow { padding-left: 18px; padding-right: 18px; }
+.st-title { font-size: var(--t-title3); font-weight: 650; letter-spacing: -0.02em; }
+.st-block { display: flex; flex-direction: column; gap: 10px; }
+.st-block + .st-block { border-top: 1px solid var(--hair); padding-top: 14px; }
+.st-note { font-size: var(--t-foot); color: var(--ink-3); line-height: 1.4; text-wrap: pretty; }
+.st-facts { display: flex; flex-direction: column; gap: 6px; }
+.st-facts__cat { font-size: var(--t-foot); font-weight: 650; color: var(--ink-2); padding-left: 4px; }
+.st-facts .list { margin: 0; }
+.st-facts .list .lrow { padding: 10px 14px; }
+.st-fact { font-size: var(--t-sub); line-height: 1.38; text-wrap: pretty; }
+.st-foot { text-align: center; font-size: var(--t-caption); color: var(--ink-3); }

@@ -1,0 +1,7 @@
+# Edge Function settings used by `supabase functions deploy`.
+[functions.mentor]
+verify_jwt = true
+
+[functions.push-tick]
+# Called by pg_cron with a shared secret header instead of a user JWT.
+verify_jwt = false

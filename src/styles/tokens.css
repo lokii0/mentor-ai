@@ -1,0 +1,114 @@
+/* mentor.ai — design tokens. Everything downstream reads these. */
+:root {
+  /* Brand */
+  --sky: #0593c6;
+  --sky-ink: #04729a;
+  --white: #fcffff;
+  --pink: #d83995;
+  --pink-ink: #b0267a;
+  --midnight: #02070a;
+  --deep: #09318d;
+
+  /* Tints (flat, no gradients) */
+  --sky-08: rgba(5, 147, 198, 0.08);
+  --sky-14: rgba(5, 147, 198, 0.14);
+  --sky-24: rgba(5, 147, 198, 0.24);
+  --pink-08: rgba(216, 57, 149, 0.08);
+  --pink-14: rgba(216, 57, 149, 0.14);
+  --pink-24: rgba(216, 57, 149, 0.24);
+  --deep-08: rgba(9, 49, 141, 0.08);
+  --deep-14: rgba(9, 49, 141, 0.14);
+
+  /* Ink */
+  --ink: var(--midnight);
+  --ink-2: rgba(2, 7, 10, 0.66);
+  --ink-3: rgba(2, 7, 10, 0.46);
+  --ink-4: rgba(2, 7, 10, 0.16);
+  --ink-5: rgba(2, 7, 10, 0.07);
+  --on-dark: #fcffff;
+  --on-dark-2: rgba(252, 255, 255, 0.68);
+  --on-dark-3: rgba(252, 255, 255, 0.42);
+
+  /* Ground + materials */
+  --ground: #eef5f9;
+  --glass: rgba(252, 255, 255, 0.58);
+  --glass-strong: rgba(252, 255, 255, 0.8);
+  --glass-thin: rgba(252, 255, 255, 0.36);
+  --glass-dark: rgba(4, 10, 16, 0.78);
+  --glass-dark-strong: rgba(4, 10, 16, 0.9);
+  --blur-s: 14px;
+  --blur-m: 24px;
+  --blur-l: 40px;
+  --edge-light: rgba(255, 255, 255, 0.9);
+  --edge-soft: rgba(255, 255, 255, 0.5);
+  --hair: rgba(9, 49, 141, 0.09);
+  --hair-strong: rgba(9, 49, 141, 0.16);
+
+  /* Depth — shadows only on things that float */
+  --lift-1: 0 1px 2px rgba(9, 49, 141, 0.06), 0 8px 24px -14px rgba(9, 49, 141, 0.22);
+  --lift-2: 0 2px 6px rgba(9, 49, 141, 0.06), 0 18px 44px -18px rgba(9, 49, 141, 0.34);
+  --lift-3: 0 4px 12px rgba(2, 7, 10, 0.1), 0 32px 80px -24px rgba(2, 7, 10, 0.45);
+
+  /* Shape */
+  --r-xs: 10px;
+  --r-s: 14px;
+  --r-m: 20px;
+  --r-l: 24px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  /* Space (4pt) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --s-12: 48px;
+  --gutter: 20px;
+
+  /* Type */
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI Variable Text", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-round: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI Variable Display", "Segoe UI", sans-serif;
+  --t-caption: 12px;
+  --t-foot: 13px;
+  --t-sub: 15px;
+  --t-body: 17px;
+  --t-title3: 20px;
+  --t-title2: 24px;
+  --t-title1: 30px;
+  --t-large: 34px;
+  --t-hero: 64px;
+
+  /* Motion — PRD: UI feedback 150–250 ms */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-press: cubic-bezier(0.3, 0.7, 0.4, 1);
+  --d-1: 150ms;
+  --d-2: 200ms;
+  --d-3: 250ms;
+
+  /* iOS safe areas */
+  --safe-t: env(safe-area-inset-top, 0px);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-l: env(safe-area-inset-left, 0px);
+  --safe-r: env(safe-area-inset-right, 0px);
+
+  /* Shell metrics */
+  --dock-h: 64px;
+  --dock-gap: 12px;
+  --header-h: 52px;
+  --sidebar-w: 264px;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass: rgba(252, 255, 255, 0.95);
+    --glass-strong: #fcffff;
+    --glass-thin: rgba(252, 255, 255, 0.9);
+    --glass-dark: #05090c;
+    --glass-dark-strong: #05090c;
+  }
+}

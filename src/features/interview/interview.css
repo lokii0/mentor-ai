@@ -1,0 +1,64 @@
+.iv {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--safe-t) + 10px) calc(var(--gutter) + var(--safe-r)) calc(var(--safe-b) + 20px) calc(var(--gutter) + var(--safe-l));
+  max-width: 640px;
+  margin: 0 auto;
+}
+.iv-top { display: flex; align-items: center; gap: 12px; height: 52px; }
+.iv-top__title { font-size: var(--t-sub); font-weight: 650; letter-spacing: -0.012em; }
+.iv-top__sub { font-size: var(--t-caption); color: var(--ink-3); }
+.iv-progress { height: 4px; border-radius: 4px; background: var(--ink-5); overflow: hidden; margin: 6px 0 0; }
+.iv-progress > div { height: 100%; background: var(--sky); border-radius: inherit; transform-origin: left; }
+
+/* Onboarding question card */
+.iv-stage { position: relative; flex: 1; display: grid; align-content: center; padding: 3vh 0 2vh; }
+.iv-q { display: flex; flex-direction: column; gap: 18px; }
+.iv-q__topic { font-size: var(--t-foot); font-weight: 650; color: var(--sky-ink); }
+.iv-q__text { font-size: clamp(24px, 6.4vw, 32px); font-weight: 700; line-height: 1.14; letter-spacing: -0.03em; text-wrap: balance; }
+.iv-q__hint { font-size: var(--t-sub); color: var(--ink-2); text-wrap: pretty; }
+.iv-answer { min-height: 132px; font-size: 17px; }
+.iv-nav { display: flex; gap: 10px; align-items: center; }
+
+/* Morning report */
+.iv-sec { padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.iv-sec__title { font-size: var(--t-title3); font-weight: 650; letter-spacing: -0.02em; }
+.iv-sec__note { font-size: var(--t-foot); color: var(--ink-3); margin-top: -8px; }
+.iv-habit { display: flex; align-items: center; gap: 12px; min-height: 52px; }
+.iv-habit + .iv-habit { border-top: 1px solid var(--hair); }
+.iv-habit__name { flex: 1; font-size: var(--t-sub); font-weight: 550; }
+.iv-habit__target { font-size: var(--t-caption); color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.iv-check {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--ink-5);
+  color: transparent;
+  transition: background-color var(--d-2) var(--ease-out), color var(--d-2), transform 120ms var(--ease-press);
+}
+.iv-check:active { transform: scale(0.9); }
+.iv-check[aria-pressed="true"] { background: var(--sky); color: #fff; box-shadow: 0 6px 16px -8px rgba(5, 147, 198, 0.8); }
+.iv-check svg { width: 22px; height: 22px; }
+
+.iv-water { display: grid; grid-template-columns: 64px 1fr; gap: 16px; align-items: center; }
+.iv-water__big { font-family: var(--font-round); font-size: 40px; font-weight: 700; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; line-height: 1; }
+.iv-water__big small { font-size: 17px; color: var(--ink-3); font-weight: 600; margin-left: 4px; letter-spacing: 0; }
+
+.iv-clean { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; }
+.iv-clean + .iv-clean { border-top: 1px solid var(--hair); }
+.iv-clean__name { font-size: var(--t-sub); font-weight: 550; }
+.iv-mood { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.iv-mood button { height: 44px; border-radius: var(--r-s); background: rgba(255, 255, 255, 0.6); box-shadow: inset 0 0 0 1px var(--hair); font-size: var(--t-foot); font-weight: 600; color: var(--ink-2); transition: background-color var(--d-1), color var(--d-1), transform 120ms var(--ease-press); }
+.iv-mood button:active { transform: scale(0.95); }
+.iv-mood button[aria-pressed="true"] { background: var(--midnight); color: var(--on-dark); box-shadow: none; }
+
+.iv-return { padding: 16px 18px; display: flex; gap: 14px; align-items: center; }
+.iv-return p { font-size: var(--t-sub); font-weight: 550; text-wrap: pretty; }
+
+.iv-dock { position: sticky; bottom: calc(var(--safe-b) + 12px); z-index: 5; margin-top: 8px; border-radius: var(--r-pill); box-shadow: var(--lift-2); }
+.iv-chat-wrap .ch-thread { padding-bottom: 16px; }
+.iv-chat-wrap .ch-composer { bottom: calc(var(--safe-b) + 12px + var(--kb, 0px)); }
+.iv-finish { display: flex; flex-direction: column; gap: 12px; padding: 18px; margin-bottom: 96px; }

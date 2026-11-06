@@ -1,0 +1,102 @@
+/* The mentor's presence: a glass sphere with light moving inside it.
+   Only transform/opacity animate; blurs are static and rasterised once. */
+.orb {
+  --size: 120px;
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  flex: none;
+  isolation: isolate;
+}
+.orb__halo {
+  position: absolute;
+  inset: -34%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(5, 147, 198, 0.42) 0%, rgba(9, 49, 141, 0.16) 38%, transparent 64%);
+  animation: orb-breathe 6.5s var(--ease-in-out) infinite;
+  transition: opacity 700ms var(--ease-out);
+  z-index: -1;
+}
+.orb__halo--pink {
+  background: radial-gradient(circle, rgba(216, 57, 149, 0.5) 0%, rgba(216, 57, 149, 0.14) 40%, transparent 64%);
+  opacity: 0;
+}
+.orb__body {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 62%, #0d47c4 0%, var(--deep) 46%, #041a4f 100%);
+  transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+.orb__spin { position: absolute; inset: 0; will-change: transform; }
+.orb[data-state="thinking"] .orb__spin { animation: orb-spin 1.8s linear infinite; }
+.orb__flow {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+  mix-blend-mode: screen;
+}
+.orb__flow--a {
+  inset: -28%;
+  background: conic-gradient(from 0deg, var(--sky) 0deg, transparent 80deg, rgba(216, 57, 149, 0.9) 150deg, transparent 220deg, #7fdcff 280deg, var(--sky) 360deg);
+  filter: blur(calc(var(--size) * 0.11));
+  animation: orb-spin 11s linear infinite;
+}
+.orb__flow--b {
+  inset: -12%;
+  background:
+    radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.85) 0%, transparent 30%),
+    radial-gradient(circle at 72% 74%, rgba(216, 57, 149, 0.8) 0%, transparent 38%),
+    radial-gradient(circle at 78% 30%, rgba(5, 147, 198, 0.9) 0%, transparent 34%);
+  filter: blur(calc(var(--size) * 0.07));
+  animation: orb-spin 17s linear infinite reverse;
+}
+.orb__flow--alert {
+  inset: -10%;
+  background: radial-gradient(circle at 50% 55%, rgba(216, 57, 149, 0.95) 0%, rgba(216, 57, 149, 0.45) 45%, transparent 70%);
+  filter: blur(calc(var(--size) * 0.06));
+  opacity: 0;
+  transition: opacity 700ms var(--ease-out);
+  mix-blend-mode: normal;
+}
+.orb__flow--calm {
+  inset: -10%;
+  background: radial-gradient(circle at 45% 40%, rgba(255, 255, 255, 0.95) 0%, rgba(180, 230, 248, 0.8) 40%, rgba(5, 147, 198, 0.6) 75%);
+  filter: blur(calc(var(--size) * 0.05));
+  opacity: 0;
+  transition: opacity 900ms var(--ease-out);
+  mix-blend-mode: normal;
+}
+.orb__spec {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse 34% 22% at 34% 22%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.4) 45%, transparent 100%),
+    radial-gradient(circle at 70% 88%, rgba(255, 255, 255, 0.28) 0%, transparent 26%);
+  pointer-events: none;
+}
+.orb__rim {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow:
+    inset 0 calc(var(--size) * -0.07) calc(var(--size) * 0.14) rgba(2, 7, 10, 0.42),
+    inset 0 calc(var(--size) * 0.02) calc(var(--size) * 0.05) rgba(255, 255, 255, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+  pointer-events: none;
+}
+
+.orb[data-mood="alert"] .orb__flow--alert { opacity: 0.85; }
+.orb[data-mood="alert"] .orb__halo--pink { opacity: 1; }
+.orb[data-mood="alert"] .orb__halo:not(.orb__halo--pink) { opacity: 0.3; }
+.orb[data-mood="calm"] .orb__flow--calm { opacity: 1; }
+.orb[data-mood="calm"] .orb__rim { box-shadow: inset 0 calc(var(--size) * -0.06) calc(var(--size) * 0.12) rgba(9, 49, 141, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.4); }
+
+@keyframes orb-spin { to { transform: rotate(360deg); } }
+@keyframes orb-breathe {
+  0%, 100% { transform: scale(0.94); opacity: 0.85; }
+  50% { transform: scale(1.05); opacity: 1; }
+}

@@ -1,0 +1,55 @@
+.td-mentor { display: flex; gap: 14px; align-items: flex-start; padding: 18px; text-align: left; width: 100%; }
+.td-mentor__text { font-size: var(--t-sub); line-height: 1.42; color: var(--on-dark); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-wrap: pretty; }
+.td-mentor__meta { font-size: var(--t-caption); color: var(--on-dark-3); margin-top: 6px; display: flex; align-items: center; gap: 6px; }
+.td-mentor__meta svg { width: 14px; height: 14px; }
+
+.td-oath { padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+.td-oath--due { box-shadow: inset 0 1px 0 var(--edge-light), inset 0 0 0 1.5px var(--pink), 0 16px 40px -20px rgba(216, 57, 149, 0.7); }
+.td-oath__label { font-size: var(--t-foot); font-weight: 650; color: var(--ink-2); display: flex; justify-content: space-between; gap: 8px; }
+.td-oath__left { font-family: var(--font-round); font-variant-numeric: tabular-nums; color: var(--deep); }
+.td-oath--due .td-oath__left { color: var(--pink-ink); }
+.td-oath__text { font-size: var(--t-title3); font-weight: 650; letter-spacing: -0.018em; line-height: 1.25; text-wrap: pretty; }
+
+.td-card { padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.td-card__head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.td-card__title { font-size: var(--t-title3); font-weight: 650; letter-spacing: -0.02em; }
+.td-card__aside { font-size: var(--t-foot); color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.td-link { display: inline-flex; align-items: center; gap: 2px; font-size: var(--t-foot); font-weight: 600; color: var(--sky-ink); }
+.td-link svg { width: 14px; height: 14px; }
+
+.td-habits { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; }
+.td-habit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 6px 10px;
+  border-radius: var(--r-m);
+  background: rgba(255, 255, 255, 0.5);
+  transition: transform 120ms var(--ease-press), background-color var(--d-1);
+  text-align: center;
+}
+.td-habit:active { transform: scale(0.95); background: rgba(255, 255, 255, 0.8); }
+.td-habit__name { font-size: 12.5px; font-weight: 600; line-height: 1.2; color: var(--ink-2); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.td-habit__val { font-size: 11.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; margin-top: -4px; }
+.td-habit--done .td-habit__name { color: var(--ink); }
+
+.td-limits { display: grid; grid-template-columns: repeat(3, 1fr); }
+.td-limit { display: flex; flex-direction: column; gap: 2px; padding: 14px 12px; text-align: left; }
+.td-limit + .td-limit { box-shadow: -1px 0 0 var(--hair); }
+.td-limit__num { font-family: var(--font-round); font-size: 28px; font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.td-limit__num small { font-size: 13px; font-weight: 600; color: var(--ink-3); letter-spacing: 0; margin-left: 3px; }
+.td-limit__name { font-size: 12.5px; color: var(--ink-2); font-weight: 550; }
+.td-limit--risk .td-limit__num { color: var(--pink-ink); }
+
+.td-next { display: flex; align-items: center; gap: 14px; }
+.td-next__time { font-family: var(--font-round); font-variant-numeric: tabular-nums; font-size: var(--t-title3); font-weight: 650; color: var(--deep); letter-spacing: -0.02em; min-width: 62px; }
+.td-next__title { font-size: var(--t-sub); font-weight: 600; }
+.td-next__sub { font-size: var(--t-caption); color: var(--ink-3); }
+
+.td-money { display: grid; grid-template-columns: 1fr auto; gap: 12px 16px; align-items: center; }
+.td-money__big { font-family: var(--font-round); font-size: 30px; font-weight: 700; letter-spacing: -0.035em; font-variant-numeric: tabular-nums; line-height: 1; }
+.td-money__sub { font-size: var(--t-foot); color: var(--ink-3); font-variant-numeric: tabular-nums; }
+
+.td-sunday { display: flex; align-items: center; gap: 14px; padding: 16px 18px; text-align: left; width: 100%; }
+.td-sunday p { font-size: var(--t-sub); font-weight: 600; }
